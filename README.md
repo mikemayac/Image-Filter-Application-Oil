@@ -1,16 +1,9 @@
-# Aplicación de Filtros de Semitonos y Dados con Streamlit
+# Aplicación de Filtro de Óleo
 
 ### Joel Miguel Maya Castrejón │ mike.maya@ciencias.unam.mx │ 417112602
 
-Este proyecto es una aplicación web creada con **Python** y **Streamlit** que permite aplicar diferentes **filtros** a una imagen para generar efectos de **semitonos** y de **dados**. 
-De esta forma cada bloque de la imagen se sustituye por uno de varios patrones predefinidos que varían en densidad para recrear la tonalidad original.
-
-Entre los filtros implementados se encuentran:
-
-1. **Filtro de Semitonos**  
-   - Tres variantes (A, B, C) con distintas series para crear efectos de semitonos.  
-2. **Filtro de Dados**  
-   - Tres variantes (m, g, c), basadas en conjuntos que simulan distintas configuraciones de dados.
+Esta aplicación web fue creada con **Python** y **Streamlit** que permite aplicar un **filtro de Óleo** a una imagen digital, recreando un efecto de pintura al óleo.  
+Para ello, utilizamos una **convolución** de 7x7 (por defecto) alrededor de cada píxel, seleccionando el valor de gris más frecuente en dicho vecindario y asignándolo al píxel resultante (en su versión básica para imágenes en blanco y negro). En la demo actual, la conversión se hace sobre la imagen convertida a escala de grises y finalmente se regresa a RGB para mostrarla y descargarla.
 
 ---
 
@@ -20,13 +13,13 @@ Entre los filtros implementados se encuentran:
 - [Streamlit](https://docs.streamlit.io/) para la creación de la interfaz web.
 - [Pillow](https://pillow.readthedocs.io/) (PIL) para la manipulación de imágenes.
 
-En el archivo **requirements.txt** se listan las dependencias necesarias (al menos Streamlit y Pillow). Asegúrate de instalarlas antes de ejecutar la aplicación.
+En el archivo **requirements.txt** se listan las dependencias necesarias. Asegúrate de instalarlas antes de ejecutar la aplicación.
 
 ---
 
 ## Instalación
 
-1. [**Descarga** este repositorio](https://github.com/mikemayac/Image-Filter-Application-Semitones-Dice) en tu máquina local.
+1. [**Clona** este repositorio](https://github.com/mikemayac/Image-Filter-Application-Oil) en tu máquina local.
 2. Crea y activa un **entorno virtual**:
    ```bash
    python -m venv venv
@@ -42,11 +35,12 @@ En el archivo **requirements.txt** se listan las dependencias necesarias (al men
 
 ## Ejecución de la Aplicación
 
-1. Dentro del entorno virtual, en la carpeta donde se encuentra el archivo principal (por ejemplo, `semitonos.py` o `semitonos.py`), ejecuta:
+1. Dentro del entorno virtual, ubícate en la carpeta donde se encuentra el archivo principal (por ejemplo, `oleo.py`).
+2. Ejecuta:
    ```bash
-   streamlit run semitonos.py
+   streamlit run oleo.py
    ```
-2. Automáticamente se abrirá tu navegador mostrando la interfaz de la aplicación.  
+3. Automáticamente se abrirá tu navegador mostrando la interfaz de la aplicación.  
    Si no se abre, copia la URL que aparece en la terminal y pégala en tu navegador.
 
 ---
@@ -54,29 +48,21 @@ En el archivo **requirements.txt** se listan las dependencias necesarias (al men
 ## Uso de la Aplicación
 
 1. **Sube una imagen** en la barra lateral (sidebar), en formatos `JPG`, `JPEG` o `PNG`.  
-2. **Selecciona** el tipo de filtro que deseas aplicar desde la lista desplegable:
-   - **Filtro de Semitonos**  
-     - Permite escoger entre tres variantes (A, B, C), cada una con un conjunto de patrones de círculos (o formas) para representar diferentes densidades de tono.  
-     - Ajusta el tamaño de bloque para modificar la granularidad del efecto.
-   - **Filtro de Dados**  
-     - Ofrece tres variantes (m, g, c), donde cada una define distintos patrones inspirados en las caras de dados.  
-     - Ajusta de nuevo el tamaño de bloque para controlar cuántos “dados” se usarán a lo largo de la imagen.
-3. **Observa** cómo se muestra la **imagen original** en una columna y la **imagen resultante** en la otra columna.
-4. **Descarga** la imagen procesada haciendo clic en el botón de descarga que aparece bajo la imagen resultante.
+2. Ajusta el **tamaño de la ventana** para el filtro de Óleo (por defecto 7x7).  
+3. **Observa** cómo se muestra la **imagen original** en una columna y la **imagen resultante** en la otra columna.  
+4. **Descarga** la imagen procesada haciendo clic en el botón de descarga que aparece sobre la imagen resultante.
 
 ---
 
 ## Estructura del Proyecto
 
 ```bash
-├── semitonos.py          # Código principal de la aplicación
-├── dados/                # Carpeta con los dados para el filtro de dados
-├── semitonos/            # Carpeta con los semitonos para el filtro de semitonos
-├── .streamlit/           # Carpeta de configuración de Streamlit (opcional)
-│    └── config.toml      # Configuraciones extra de Streamlit
-├── README.md             # Archivo de documentación
-├── requirements.txt      # Dependencias del proyecto (Streamlit, Pillow, etc.)
-└── venv/                 # Entorno virtual 
+.
+├── oleo.py                # Código principal de la aplicación 
+├── .streamlit/            # Carpeta de configuración de Streamlit 
+│    └── config.toml       # Configuraciones extra de Streamlit
+├── README.md              # Archivo de documentación
+├── requirements.txt       # Dependencias del proyecto (Streamlit, Pillow, etc.)
+└── venv/                  # Entorno virtual 
 ```
 
----
